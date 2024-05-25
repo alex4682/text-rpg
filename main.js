@@ -81,6 +81,8 @@ if (quest === 1) {
                 break;
             } else {
                 console.log("У вас", hp, "здоров'я");
+                console.log("У першого орку", firstOrkHp, "здоров'я")
+                console.log("У другого орку", secondOrkHp, "здоров'я")
                 console.log("Виберіть, що будете робити: ударити, використати магію, захищатися або використати хіл");
 
                 let choose = prompt("Виберіть").toLowerCase();
@@ -156,6 +158,9 @@ if (quest === 1) {
             } else {
                 console.log("У вас", hp, "здоров'я");
                 console.log("Виберіть, що будете робити: ударити, використати магію, захищатися або використати хіл");
+                console.log("У першого орку", firstOrkHp, "здоров'я")
+                console.log("У другого орку", secondOrkHp, "здоров'я")
+                console.log("У голему", golemHp, "здоров'я")
 
                 let choose = prompt("Виберіть").toLowerCase();
 
@@ -238,6 +243,8 @@ else if (quest === 2) {
         }
         else {
             console.log("у вас", hp, "здоров'я");
+            console.log("у першого павука", firstSpiderHp, "здоров'я")
+            console.log("у другого павука", secondSpiderHp, "здоров'я")
             console.log("Виберіть що будете робити: ударити, використати магію, захищатися або використати хіл");
             let choose;
             while (true) {
@@ -343,6 +350,9 @@ else if (quest === 2) {
                 }
                 else {
                     console.log("у вас", hp, "здоров'я");
+                    console.log("У першого орку", firstOrkHp, "здоров'я")
+                    console.log("У другого орку", secondOrkHp, "здоров'я")
+                    console.log("У голему", golemHp, "здоров'я")
                     console.log("Виберіть що будете робити: ударити, використати магію, захищатися або використати хіл");
                     let choose;
                     while (true) {
@@ -792,6 +802,8 @@ else {
                 }
                 else {
                     console.log("у вас", hp, "здоров'я");
+                    console.log("У першого орку", firstOrkHp, "здоров'я")
+                    console.log("У другого орку", secondOrkHp, "здоров'я")
                     console.log("Виберіть що будете робити: ударити, використати магію, захищатися або використати хіл");
                     let choose;
                     while (true) {
@@ -884,6 +896,9 @@ else {
                 }
                 else {
                     console.log("у вас", hp, "здоров'я");
+                    console.log("У першого орку", firstOrkHp, "здоров'я")
+                    console.log("У другого орку", secondOrkHp, "здоров'я")
+                    console.log("У голему", golemHp, "здоров'я")
                     console.log("Виберіть що будете робити: ударити, використати магію, захищатися або використати хіл");
                     let choose;
                     while (true) {
@@ -988,6 +1003,8 @@ else {
             }
             else {
                 console.log("у вас", hp, "здоров'я");
+                console.log("у першого павука", firstSpiderHp, "здоров'я")
+                console.log("у другого павука", secondSpiderHp, "здоров'я")
                 console.log("Виберіть що будете робити: ударити, використати магію, захищатися або використати хіл");
                 let choose;
                 while (true) {
@@ -1093,6 +1110,8 @@ else {
                 }
                 else {
                     console.log("у вас", hp, "здоров'я");
+                    console.log("у першого орку", firstOrkHp, "здоров'я")
+                    console.log("у другого орку", secondOrkHp, "здоров'я")
                     console.log("Виберіть що будете робити: ударити, використати магію, захищатися або використати хіл");
                     let choose;
                     while (true) {
@@ -1185,6 +1204,9 @@ else {
                 }
                 else {
                     console.log("у вас", hp, "здоров'я");
+                    console.log("у першого орку", firstOrkHp, "здоров'я")
+                    console.log("у другого орку", secondOrkHp, "здоров'я")
+                    console.log("у голему", golemHp, "здоров'я")
                     console.log("Виберіть що будете робити: ударити, використати магію, захищатися або використати хіл");
                     let choose;
                     while (true) {
@@ -1272,25 +1294,24 @@ while (true) {
         money -= 5;
         maxDamage += 3;
         minDamage += 1;
-        break;
     }
     else if (choose === "щит") {
         console.log("Ви купили щит");
         money -= 6;
         maxDefense += 4;
         defense = maxDefense;
-        break;
     }
     else if (choose === "вогняний меч") {
         console.log("Ви купили вогняний меч");
         money -= 20;
         maxDamage += 10;
         minDamage += 4;
+    }
+    else if (choose === "q") {
         break;
     }
     else {
         console.log("Такого не існує");
-        break;
     }
 }
 
@@ -1317,11 +1338,12 @@ while (true) {
         maxHp += maxHp * ((Math.floor(Math.random() * (10 - 2 + 1)) + 2) / 10);
         hp = maxHp;
         money += 25;
-        console.log("Ви виграли в битві з фінальним босом. Мої вітання ви пройшли гру");
+        console.log("Ви виграли в битві з фінальним босом.");
         break;
     }
     else {
         console.log("у вас", hp, "здоров'я");
+        console.log("у дракону", dragonHp, "здоров'я")
         console.log("Виберіть що будете робити: ударити, використати магію, захищатися або використати хіл");
         let choose;
         while (true) {
@@ -1369,4 +1391,9 @@ while (true) {
             dragonHp += Math.floor(Math.random() * (20 - 2 + 1)) + 2;
         }
     }
+    dragonAttack = 0;
 }
+
+
+console.log("Перемігши дракона ви вийшли заміж за принцесу й жили довго і щасливо")
+console.log("          Кінець            ")

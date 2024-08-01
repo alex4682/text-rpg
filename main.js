@@ -38,27 +38,28 @@ function firstQuest() {
                 secondOrkHp = 25;
                 hp = maxHp;
                 mana = 50;
+                round = 0;
                 continue;
             } else if (firstOrkHp <= 0 && secondOrkHp <= 0) {
                 console.log("Ви помітили як груда каменя перетворюється на голема");
                 break;
             } else {
                 console.log("У вас", hp, "здоров'я");
-                if (firstOrkHp != 0) {
-                    console.log("У першого орку", firstOrkHp, "здоров'я")
+                if (firstOrkHp > 0) {
+                    console.log("У першого орку", firstOrkHp, "здоров'я");
                 }
-                else if (secondOrkHp != 0) {
-
-                    console.log("У другого орку", secondOrkHp, "здоров'я")
+                if (secondOrkHp > 0) {
+                    console.log("У другого орку", secondOrkHp, "здоров'я");
                 }
             }
+
             console.log("Виберіть, що будете робити: ударити, використати магію, захищатися або використати хіл");
 
-            let choose = prompt("Виберіть").toLowerCase();
+            let chooseAction = prompt("Виберіть").toLowerCase();
 
-            if (choose === "ударити") {
-                let chooseThree = parseInt(prompt("Виберіть, кого атакувати 1 чи 2?"));
-                if (chooseThree === 1) {
+            if (chooseAction === "ударити") {
+                let chooseOrk = parseInt(prompt("Виберіть, кого атакувати 1 чи 2?"));
+                if (chooseOrk === 1) {
                     if (Math.floor(Math.random() * 20) + 1 >= 5) {
                         firstOrkHp -= Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
                     }
@@ -67,13 +68,13 @@ function firstQuest() {
                         secondOrkHp -= Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
                     }
                 }
-            } else if (choose === "магію") {
+            } else if (chooseAction === "магію") {
                 mana -= 15;
                 firstOrkHp -= Math.floor(Math.random() * 5) + 4;
                 secondOrkHp -= Math.floor(Math.random() * 5) + 4;
-            } else if (choose === "захищатися") {
+            } else if (chooseAction === "захищатися") {
                 defense += Math.floor(defense * 0.5);
-            } else if (choose === "хіл") {
+            } else if (chooseAction === "хіл") {
                 let heal = Math.round(maxHp * 0.2);
                 hp += heal;
                 console.log(`Ви отримали ${heal} здоров'я`);
@@ -96,101 +97,100 @@ function firstQuest() {
                 break;
             }
         }
-    }
 
-    let golemHp = 70;
+        let golemHp = 70;
 
-    while (true) {
-        defense = maxDefense;
+        while (true) {
+            defense = maxDefense;
 
-        if (hp <= 0) {
-            console.log("Game over. Битва починається заново");
-            firstOrkHp = 25;
-            secondOrkHp = 25;
-            golemHp = 70;
-            hp = maxHp;
-            mana = 50;
-            continue;
-        } else if (firstOrkHp <= 0 && secondOrkHp <= 0 && golemHp <= 0) {
-            mana = 50;
-            maxHp += Math.floor(maxHp * ((Math.floor(Math.random() * 8) + 3) / 10));
-            hp = maxHp;
-            money += 30;
-            console.log("Ви виграли в битві. Ви перемогли боса і вийшли з печери");
-            console.log("Тепер ваше здоров'я дорівнює", maxHp);
-            console.log("Тепер у вас", money, "грошей");
-            console.log("Також ви знайшли сильний меч і обладунок");
-            maxDefense += 5;
-            maxDamage += 4;
-            minDamage += 2;
-            break;
-        } else {
-            console.log("У вас", hp, "здоров'я");
-            console.log("Виберіть, що будете робити: ударити, використати магію, захищатися або використати хіл");
-            if (firstOrkHp != 0) {
-                console.log("У першого орку", firstOrkHp, "здоров'я")
-            }
-            else if (secondOrkHp != 0) {
-                console.log("У другого орку", secondOrkHp, "здоров'я")
-            }
-            else if (golemHp != 0) {
-                console.log("У голему", golemHp, "здоров'я")
-            }
+            if (hp <= 0) {
+                console.log("Game over. Битва починається заново");
+                firstOrkHp = 25;
+                secondOrkHp = 25;
+                golemHp = 70;
+                hp = maxHp;
+                mana = 50;
+                continue;
+            } else if (firstOrkHp <= 0 && secondOrkHp <= 0 && golemHp <= 0) {
+                mana = 50;
+                maxHp += Math.floor(maxHp * ((Math.floor(Math.random() * 8) + 3) / 10));
+                hp = maxHp;
+                money += 30;
+                console.log("Ви виграли в битві. Ви перемогли боса і вийшли з печери");
+                console.log("Тепер ваше здоров'я дорівнює", maxHp);
+                console.log("Тепер у вас", money, "грошей");
+                console.log("Також ви знайшли сильний меч і обладунок");
+                maxDefense += 5;
+                maxDamage += 4;
+                minDamage += 2;
+                break;
+            } else {
+                console.log("У вас", hp, "здоров'я");
+                console.log("Виберіть, що будете робити: ударити, використати магію, захищатися або використати хіл");
+                if (firstOrkHp > 0) {
+                    console.log("У першого орка", firstOrkHp, "здоров'я");
+                }
+                if (secondOrkHp > 0) {
+                    console.log("У другого орка", secondOrkHp, "здоров'я");
+                }
+                if (golemHp > 0) {
+                    console.log("У голема", golemHp, "здоров'я");
+                }
 
+                let chooseAction = prompt("Виберіть").toLowerCase();
 
-            let choose = prompt("Виберіть").toLowerCase();
-
-            if (choose === "ударити") {
-                let chooseThree = parseInt(prompt("Виберіть, кого атакувати 1, 2 чи 3?"));
-                if (chooseThree === 1) {
-                    if (Math.floor(Math.random() * 20) + 1 >= 5) {
-                        firstOrkHp -= Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
-                        console.log("Тепер у першого орка", firstOrkHp, "здоров'я");
+                if (chooseAction === "ударити") {
+                    let chooseEnemy = parseInt(prompt("Виберіть, кого атакувати 1, 2 чи 3?"));
+                    if (chooseEnemy === 1) {
+                        if (Math.floor(Math.random() * 20) + 1 >= 5) {
+                            firstOrkHp -= Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
+                            console.log("Тепер у першого орка", firstOrkHp, "здоров'я");
+                        } else {
+                            console.log("Ви промахнулися");
+                        }
+                    } else if (chooseEnemy === 2) {
+                        if (Math.floor(Math.random() * 20) + 1 >= 5) {
+                            secondOrkHp -= Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
+                            console.log("Тепер у другого орка", secondOrkHp, "здоров'я");
+                        } else {
+                            console.log("Ви промахнулися");
+                        }
                     } else {
-                        console.log("Ви промахнулися");
+                        if (Math.floor(Math.random() * 20) + 1 >= 5) {
+                            golemHp -= Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
+                            console.log("Тепер у голема", golemHp, "здоров'я");
+                        } else {
+                            console.log("Ви промахнулися");
+                        }
                     }
-                } else if (chooseThree === 2) {
-                    if (Math.floor(Math.random() * 20) + 1 >= 5) {
-                        secondOrkHp -= Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
-                        console.log("Тепер у другого орка", secondOrkHp, "здоров'я");
-                    } else {
-                        console.log("Ви промахнулися");
-                    }
-                } else {
-                    if (Math.floor(Math.random() * 20) + 1 >= 5) {
-                        golemHp -= Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
-                        console.log("Тепер у голема", golemHp, "здоров'я");
-                    } else {
-                        console.log("Ви промахнулися");
+                } else if (chooseAction === "магію") {
+                    mana -= 15;
+                    firstOrkHp -= Math.floor(Math.random() * 5) + 4;
+                    secondOrkHp -= Math.floor(Math.random() * 5) + 4;
+                    golemHp -= Math.floor(Math.random() * 5) + 4;
+                } else if (chooseAction === "захищатися") {
+                    defense += Math.floor(defense * 0.5);
+                } else if (chooseAction === "хіл") {
+                    let heal = Math.round(maxHp * 0.2);
+                    hp += heal;
+                    console.log(`Ви отримали ${heal} здоров'я`);
+                }
+
+                if (firstOrkHp > 0) {
+                    if (Math.floor(Math.random() * 10) + 1 >= defense) {
+                        hp -= Math.floor(Math.random() * 4) + 2;
                     }
                 }
-            } else if (choose === "магію") {
-                mana -= 15;
-                firstOrkHp -= Math.floor(Math.random() * 5) + 4;
-                secondOrkHp -= Math.floor(Math.random() * 5) + 4;
-                golemHp -= Math.floor(Math.random() * 5) + 4;
-            } else if (choose === "захищатися") {
-                defense += Math.floor(defense * 0.5);
-            } else if (choose === "хіл") {
-                let heal = Math.round(maxHp * 0.2);
-                hp += heal;
-                console.log(`Ви отримали ${heal} здоров'я`);
-            }
 
-            if (firstOrkHp > 0) {
-                if (Math.floor(Math.random() * 10) + 1 >= defense) {
-                    hp -= Math.floor(Math.random() * 4) + 2;
+                if (secondOrkHp > 0) {
+                    if (Math.floor(Math.random() * 10) + 1 >= defense) {
+                        hp -= Math.floor(Math.random() * 4) + 2;
+                    }
                 }
-            }
-
-            if (secondOrkHp > 0) {
-                if (Math.floor(Math.random() * 10) + 1 >= defense) {
-                    hp -= Math.floor(Math.random() * 4) + 2;
-                }
-            }
-            if (golemHp > 0) {
-                if (Math.floor(Math.random() * 10) + 5 >= defense) {
-                    hp -= Math.floor(Math.random() * 5) + 3;
+                if (golemHp > 0) {
+                    if (Math.floor(Math.random() * 10) + 5 >= defense) {
+                        hp -= Math.floor(Math.random() * 5) + 3;
+                    }
                 }
             }
         }
@@ -418,7 +418,7 @@ while (true) {
     if (defense !== maxDefense) {
         defense = maxDefense;
     }
-    if (hp === 0) {
+    if (hp <= 0) {
         console.log("Game over. Битва починається заново");
         dragonHp = 150;
         hp = maxHp;
@@ -491,4 +491,4 @@ while (true) {
 
 
 console.log("Перемігши дракона ви вийшли заміж за принцесу й жили довго і щасливо")
-console.log("          Кінець               ")
+console.log("          Кінець               ");
